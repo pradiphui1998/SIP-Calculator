@@ -1,0 +1,26 @@
+# The R Function to calculate SIP returns
+calculate_sip_returns <- function(monthly_investment, time_years, annual_interest_rate) {
+  # Convert annual interest rate to monthly interest rate
+  monthly_interest_rate <- (annual_interest_rate / 100) / 12
+  
+  # Total number of months
+  total_months <- time_years * 12
+  
+  # Initialize future value
+  future_value <- 0
+  
+  # Calculate the future value of SIP
+  for (i in 1:total_months) {
+    future_value <- future_value * (1 + monthly_interest_rate) + monthly_investment
+  }
+  
+  return(future_value)
+}
+
+# Demo example for user
+monthly_investment <- 10000  # Monthly investment amount
+time_years <- 15             # Time in years
+annual_interest_rate <- 15  # Annual interest rate in percentage
+
+sip_returns <- calculate_sip_returns(monthly_investment, time_years, annual_interest_rate)
+print(paste("Future value of SIP: ", round(sip_returns, 2)))
